@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  - let Nresults = [{unicyclecolor:"red",unicyclespeed:"100",unicyclecost:"20$"},{unicyclecolor:"pink",unicyclespeed:"150",unicyclecost:"35$"},{unicyclecolor:"blue",unicyclespeed:"180",unicyclecost:"23$"}]
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in Nresults
+        div(class="col-sm-2",onClick=`buy(${index})`)
+          p color of unicycle  is #{item.unicyclecolor}
+          p speed of unicycle is #{item.unicyclespeed}
+          p Cost of unicycle  is #{item.unicyclecost}
+  script.
+    function buy(N) {
+      N=N+1;
+      alert('You purchased item '+N);
+    }  
