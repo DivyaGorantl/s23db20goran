@@ -1,10 +1,6 @@
-
 var express = require('express');
+const unicycle_controlers= require('../controllers/unicycle');
 var router = express.Router();
-
-/* GET Notebook details */
-router.get('/', function(req, res, next) {
-  res.render('unicycle', { title: 'Search Results of unicycle' });
-});
-
+/* GET costumes */
+router.get('/', unicycle_controlers.unicycle_view_all_Page );
 module.exports = router;
