@@ -1,0 +1,24 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+   h2 No instance to detail 
+ else
+  - let unicycleid = toShow._id
+  - let unicycle_type = toShow.unicycle_type
+  - let unicyclecost = toShow.unicycle_cost
+  - let unicyclesize = toShow.unicycle_size
+
+  div
+    div.row
+     div(class='unicycleAttr mr-3') unicycle ID is:
+     div #{unicycleid}
+    div.row
+     div(class='unicycleAttr mr-3') unicycle Type is:
+     div #{unicycle_type}
+    div.row
+     div(class='unicycleAttr mr-3') unicycle Size is:
+     div #{unicyclesize}
+    div.row
+     div(class='unicycleAttr mr-3') unicycle Cost is:
+     div #{unicyclecost}

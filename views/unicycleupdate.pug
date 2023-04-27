@@ -1,0 +1,43 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+   h2 No instance to update
+ else
+  - let unicycleid = toShow._id
+  - let unicycle_type = toShow.unicycle_type
+  - let unicycle_size = toShow.unicycle_size
+  - let unicycle_cost = toShow.unicycle_cost
+
+  div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{unicycleid}
+  - let actionid = "/resource/unicycle/" + unicycleid
+  form(id='unicycleForm', action= actionid, method="PUT")
+   div.form-group
+     label.unicycleAttr(for='unicycle_type') unicycle type
+     input#unicycle_type(type='text', name='unicycle_type', value= unicycle_type )
+   div.form-group
+     label.unicycleAttr(for='unicycle_size') unicycle size
+     input#unicycle_size(type='text', name='unicycle_size', value= unicycle_size )
+   div.form-group
+     label.unicycleAttr(for='unicycle_cost') unicycle cost
+     input#unicycle_cost(type='number', name='unicycle_cost', value= unicycle_cost )
+   input(type="submit")
+  script.
+   document.forms['unicycleForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+      method: 'PUT',
+      body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+     }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+     }).then((body) => {
+      alert("Update succeded")
+      // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
+   ``});
